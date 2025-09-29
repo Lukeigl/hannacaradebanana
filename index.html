@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prova do Assistente do Vilão – Aniversário</title>
+  <style>
+    body{margin:0;background:#0e0f15;color:#e7eaf0;font-family:sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px}
+    .wrap{display:none}
+    .gate{max-width:600px}
+    .count{margin-top:15px;font-size:1.2rem;color:#9aa3b2}
+    .answers button{margin:6px;padding:10px 16px;border-radius:8px;border:none;cursor:pointer}
+    .answers button.correct{background:#22c55e;color:#fff}
+    .answers button.wrong{background:#ef4444;color:#fff}
+  </style>
+</head>
+<body>
+  <!-- Tela de bloqueio -->
+  <div id="gate" class="gate">
+    <h1>🎂 Ainda não é hora!</h1>
+    <p>Eiii, lembra que eu disse que era apenas no dia do seu aniversário?<br>
+    Calma, é algo meu pra você, e quero que seja em um dia especial, o seu dia 💜!!</p>
+    <div id="count" class="count"></div>
+  </div>
+
+  <!-- Jogo -->
+  <div id="app" class="wrap">
+    <h1>🧠 Prova do Assistente do Vilão</h1>
+    <p id="narrator">O vilão observa em silêncio. Ele quer saber se você lembra a origem de Evie…</p>
+    <h2 id="qTitle"></h2>
+    <p id="qText"></p>
+    <div id="answers" class="answers"></div>
+    <p id="feedback"></p>
+    <button onclick="restart()">Reiniciar</button>
+  </div>
+
+  <div id="modal" style="display:none;max-width:600px">
+    <h2>🎁 O Cofre Secreto</h2>
+    <p id="finalMsg">“Quando te entreguei o primeiro chocolate, você comentou que teria sido um primeiro presente.  
+    Fiquei feliz, e gostaria de te parabenizar novamente pelos seus 18 anos.  
+    Que essa data seja apenas o início: que teus sonhos não apenas se realizem, mas que também te transformem e te façam crescer sempre mais.”</p>
+  </div>
+
+  <script>
+    const BIRTHDAY = { day: 10, month: 10 }; // <-- altere aqui o dia/mês
+    const PREVIEW = new URLSearchParams(location.search).has('preview');
+
+    function nowSP(){
+      const fmt = new Intl.DateTimeFormat('pt-BR',{timeZone:'America/Sao_Paulo',year:'numeric',month:'numeric',day:'numeric'});
+      const parts = Object.fromEntries(fmt.formatToParts(new Date()).map(p=>[p.type,p.value]));
+      return {day:+parts.day, month:+parts.month};
+    }
+
+    function applyGate(){
+      const {day,month} = nowSP();
+      const isBirthday = (day===BIRTHDAY.day && month===BIRTHDAY.month);
+      if(isBirthday || PREVIEW){
+        document.getElementById('app').style.display='block';
+        document.getElementById('gate').style.display='none';
+        renderQuestion();
+      }else{
+        document.getElementById('app').style.display='none';
+        document.getElementById('gate').style.display='block';
+        countdown();
+      }
+    }
+
+    function countdown(){
+      const now = new Date();
+      let year = now.getFullYear();
+      if(now.getMonth()+1 > BIRTHDAY.month || (now.getMonth()+1===BIRTHDAY.month && now.getDate()>BIRTHDAY.day)){
+        year++;
+      }
+      const target = new Date(year,BIRTHDAY.month-1,BIRTHDAY.day);
+      setInterval(()=>{
+        const diff = target-new Date();
+        const d=Math.floor(diff/86400000),h=Math.floor(diff/3600000)%24,m=Math.floor(diff/60000)%60,s=Math.floor(diff/1000)%60;
+        document.getElementById('count').textContent = `${d}d ${h}h ${m}m ${s}s`;
+      },1000);
+    }
+
+    // --- Jogo simples ---
+    let idx=0;
+    const questions=[
+      {title:"Pergunta 1 – Origem",text:"Antes de ser assistente, qual era a profissão da Evie?",choices:["Arqueira","Bibliotecária","Ferreira"],correct:"Bibliotecária"},
+      {title:"Pergunta 2 – Treinamento",text:"Quais artes salvariam as muralhas?",choices:["Defesa mágica e Estratégia de guerra","Culinária e Diplomacia"],correct:"Defesa mágica e Estratégia de guerra"},
+      {title:"Pergunta 3 – Dilema",text:"Qual dilema central testa a Evie?",choices:["Onde está sua lealdade","Qual vestido usar"],correct:"Onde está sua lealdade"}
+    ];
+
+    function renderQuestion(){
+      if(idx>=questions.length){document.getElementById('app').style.display='none';document.getElementById('modal').style.display='block';return;}
+      const q=questions[idx];
+      document.getElementById('qTitle').textContent=q.title;
+      document.getElementById('qText').textContent=q.text;
+      const answers=document.getElementById('answers');answers.innerHTML="";
+      q.choices.forEach(c=>{
+        const b=document.createElement('button');b.textContent=c;
+        b.onclick=()=>{ if(c===q.correct){b.className='correct';idx++;setTimeout(renderQuestion,600);}else{b.className='wrong';} };
+        answers.appendChild(b);
+      });
+    }
+
+    function restart(){idx=0;document.getElementById('modal').style.display='none';document.getElementById('app').style.display='block';renderQuestion();}
+    applyGate();
+  </script>
+</body>
+</html>
