@@ -18,3 +18,8 @@ Os materiais identificam a bibliografia curricular indicada e fontes complementa
 Aulas guiadas em seis etapas, leitura completa, tabelas vasculares pesquisáveis, atlas comentado, reconstrução de trajetos, 96 objetivas e 36 discursivas. Etapas concluídas indicam autoacompanhamento, não domínio demonstrado. Preferências de leitura, casos e progresso usam o armazenamento local existente.
 
 A importação do módulo genérico no HTML cifrado inclui uma versão na query string. Ao alterar suas exportações, atualize essa versão para evitar incompatibilidade com caches antigos.
+
+## Atlas em português
+As dez pranchas históricas receberam referências numeradas com legendas em português; o diagrama do estômago já estava em português. As descrições foram revisadas. O visualizador oferece ampliação e comparação com os originais. As traduções usam camadas manuais sobre os arquivos originais, sem redesenho generativo. Inscrições históricas residuais podem permanecer no fundo da gravura; a legenda de estudo fica disponível em texto legível.
+
+As fontes privadas incluem `localize-plates.mjs` e `localized/manifest.json`, com posições das inscrições e hashes dos originais. Reconstrua as pranchas com `node localize-plates.mjs` antes de `node build.mjs`. Publique somente o pacote cifrado, mantendo essas fontes fora do repositório público.
