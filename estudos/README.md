@@ -13,3 +13,8 @@ Use `node scripts/study-package.mjs`, enviando por stdin um objeto JSON com `mod
 `node --test tests/*.test.mjs`
 
 Os materiais identificam a bibliografia curricular indicada e fontes complementares. Não são reprodução do livro nem gabarito oficial. As questões adaptadas distinguem enunciados enviados de exercícios inéditos.
+
+## Experiência ampliada
+Aulas guiadas em seis etapas, leitura completa, tabelas vasculares pesquisáveis, atlas comentado, reconstrução de trajetos, 96 objetivas e 36 discursivas. Etapas concluídas indicam autoacompanhamento, não domínio demonstrado. Preferências de leitura, casos e progresso usam o armazenamento local existente.
+
+A importação do módulo genérico no HTML cifrado inclui uma versão na query string. Ao alterar suas exportações, atualize essa versão para evitar incompatibilidade com caches antigos.
