@@ -15,7 +15,7 @@ Use `node scripts/study-package.mjs`, enviando por stdin um objeto JSON com `mod
 Os materiais identificam a bibliografia curricular indicada e fontes complementares. Não são reprodução do livro nem gabarito oficial. As questões adaptadas distinguem enunciados enviados de exercícios inéditos.
 
 ## Experiência ampliada
-Aulas guiadas em seis etapas, leitura completa, tabelas vasculares pesquisáveis, atlas comentado, reconstrução de trajetos, 96 objetivas e 36 discursivas. Etapas concluídas indicam autoacompanhamento, não domínio demonstrado. Preferências de leitura, casos e progresso usam o armazenamento local existente.
+Aulas guiadas em seis etapas, leitura completa, tabelas vasculares pesquisáveis, atlas comentado, reconstrução de trajetos, 160 objetivas e 60 discursivas. Etapas concluídas indicam autoacompanhamento, não domínio demonstrado. Preferências de leitura, casos e progresso usam o armazenamento local existente.
 
 A importação do módulo genérico no HTML cifrado inclui uma versão na query string. Ao alterar suas exportações, atualize essa versão para evitar incompatibilidade com caches antigos.
 
@@ -23,3 +23,6 @@ A importação do módulo genérico no HTML cifrado inclui uma versão na query 
 As dez pranchas históricas receberam referências numeradas com legendas em português; o diagrama do estômago já estava em português. As descrições foram revisadas. O visualizador oferece ampliação e comparação com os originais. As traduções usam camadas manuais sobre os arquivos originais, sem redesenho generativo. Inscrições históricas residuais podem permanecer no fundo da gravura; a legenda de estudo fica disponível em texto legível.
 
 As fontes privadas incluem `localize-plates.mjs` e `localized/manifest.json`, com posições das inscrições e hashes dos originais. Reconstrua as pranchas com `node localize-plates.mjs` antes de `node build.mjs`. Publique somente o pacote cifrado, mantendo essas fontes fora do repositório público.
+
+## Fisiologia e biofísica · M2
+Oito aulas de fisiologia cardiovascular integradas às doze de anatomia, com 64 novas questões disponíveis também em flashcards e simulados, 24 novas discursivas, oito diagramas autorais e quatro trajetos adicionais. Total: 20 aulas, 120 etapas guiadas, 160 objetivas, 60 discursivas, 19 imagens e 16 trajetos. As aulas fisiológicas usam etapas próprias de conceitos, mecanismos e aplicação. O conteúdo anterior e seus identificadores de progresso foram preservados.
